@@ -7,7 +7,7 @@ namespace CadCli.API.Controllers;
 public class ClientesController : ControllerBase
 {
 
-    static List<Cliente> dados = new List<Cliente> {
+    private static List<Cliente> dados = new List<Cliente> {
 
         new Cliente{Id=1, Nome= "Fabiano Nalin", Idade = 43},
         new Cliente{Id=2, Nome= "Priscila Mitui", Idade = 44},
