@@ -6,9 +6,8 @@ namespace CadCli.API.Controllers;
 [Route("[controller]")]
 public class ClientesController : ControllerBase
 {
-   [HttpGet]
-   public IActionResult GetAll() {
-    var dados = new List<Cliente> {
+
+    private static List<Cliente> dados = new List<Cliente> {
 
         new Cliente{Id=1, Nome= "Fabiano Nalin", Idade = 43},
         new Cliente{Id=2, Nome= "Priscila Mitui", Idade = 44},
@@ -16,9 +15,23 @@ public class ClientesController : ControllerBase
         new Cliente {Id=4, Nome= "Nair Goes", Idade = 83},
     };
 
+   [HttpGet]
+   public IActionResult GetAll() {
+    
+
     return Ok(dados);
 
    }
+
+   [HttpGet("{id}")]
+   public IActionResult GetById(int id) {
+    
+    var cliente = dados.FirstOrDefault(x=>x.Id == id);
+    return Ok(cliente);
+
+   }
+
+
 }
 
 public class Cliente {
