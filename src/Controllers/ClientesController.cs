@@ -15,27 +15,42 @@ public class ClientesController : ControllerBase
         new Cliente {Id=4, Nome= "Nair Goes", Idade = 83},
     };
 
-   [HttpGet]
-   public IActionResult GetAll() {
-    
+    [HttpGet]
+    public IActionResult GetAll()
+    {
 
-    return Ok(dados);
 
-   }
+        return Ok(dados);
 
-   [HttpGet("{id}")]
-   public IActionResult GetById(int id) {
-    
-    var cliente = dados.FirstOrDefault(x=>x.Id == id);
-    return Ok(cliente);
+    }
 
-   }
+    [HttpGet("{id}")]
+    public IActionResult GetById(int id)
+    {
+
+        var cliente = dados.FirstOrDefault(x => x.Id == id);
+        return Ok(cliente);
+
+    }
+
+    [HttpPost]
+    public IActionResult Add([FromBody] Cliente cliente)
+    {
+
+        var id = dados.LastOrDefault().Id + 1;
+        cliente.Id = id;
+
+        dados.Add(cliente);
+        return Ok();
+
+    }
 
 
 }
 
-public class Cliente {
-    public int Id {get; set;}
-    public string Nome {get; set;}
-    public int Idade {get; set;}
+public class Cliente
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public int Idade { get; set; }
 }
